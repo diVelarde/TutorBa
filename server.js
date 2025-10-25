@@ -17,12 +17,8 @@ mongoose.connect('mongodb://localhost:27017/tutorba', {
 });
 
 // Routes
-const reviewsRouter = require('./routes/reviews');
-const sessionsRouter = require('./routes/sessions');
-
-app.use('/api/reviews', reviewsRouter);
-app.use('/api/sessions', sessionsRouter);
-const sessionsRouter = require('vary/routes/sessions');
+const reviewsRouter = require('vary/routes/reviews');
+const sessionsRouter = require('routes/sessions');
 
 app.use('/api/reviews', reviewsRouter);
 app.use('/api/sessions', sessionsRouter);
