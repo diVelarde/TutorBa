@@ -22,6 +22,10 @@ const sessionsRouter = require('./routes/sessions');
 
 app.use('/api/reviews', reviewsRouter);
 app.use('/api/sessions', sessionsRouter);
+const sessionsRouter = require('vary/routes/sessions');
+
+app.use('/api/reviews', reviewsRouter);
+app.use('/api/sessions', sessionsRouter);
 
 app.get('/', (req, res) => {
     res.send('TutorBa API Server');
