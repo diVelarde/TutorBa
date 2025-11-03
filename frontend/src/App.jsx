@@ -1,12 +1,23 @@
 import 'bootstrap/dist/css/bootstrap.min.css';  
-import Header from './Header.jsx';
-import SideBar from './SideBar.jsx';
+import './App.css';
+
+import Header from './components/Header.jsx';
+import SideBar from './components/SideBar.jsx';
+import PostCard from './components/PostCard.jsx';
 
 function App() {
     return(
         <>
             <Header />
             <SideBar />
+
+            <div className="feed-container">
+                
+                <PostCard />
+                <PostCard />
+                <PostCard />
+              
+            </div>
         </>
     )
 }
