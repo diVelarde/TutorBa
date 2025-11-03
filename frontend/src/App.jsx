@@ -1,12 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';  
 import Header from './Header.jsx';
+import SideBar from './SideBar.jsx';
 
 function App() {
     return(
         <>
-            <header id="header">
-                <Header />
-            </header>
+            <Header />
+            <SideBar />
         </>
     )
 }

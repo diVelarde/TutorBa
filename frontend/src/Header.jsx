@@ -9,8 +9,10 @@ const styles = () => (
     {`
       .blueNavBar {
         background-color: #5bbaf2;
+        height: 56px;   
         padding: 0.5rem 1.5rem;
         box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+         z-index: 1000;        
       }
 
       .profile-avatar {
