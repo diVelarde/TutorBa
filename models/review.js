@@ -61,6 +61,50 @@ reviewSchema.virtual('reviewAge').get(function() {
     return Date.now() - this.createdAt;
 });
 
+// Static method to calculate average rating for a tutor and store it in TutorRating
+reviewSchema.statics.calculateAverageRating = async function(tutorId) {
+    const result = await this.aggregate([
+        { $match: { tutor_id: mongoose.Types.ObjectId(tutorId) } },
+        { $group: {
+            _id: '$tutor_id',
+            averageRating: { $avg: '$rating' },
+            reviewCount: { $sum: 1 }
+        }}
+    ]);
+
+    const TutorRating = require('./tutorRating');
+
+    if (result.length > 0) {
+        const { averageRating, reviewCount } = result[0];
+        await TutorRating.findOneAndUpdate(
+            { tutor_id: tutorId },
+            { averageRating: Number(averageRating.toFixed(2)), reviewCount },
+            { upsert: true, new: true }
+        );
+    } else {
+        // No reviews -> reset or remove entry
+        await TutorRating.findOneAndUpdate(
+            { tutor_id: tutorId },
+            { averageRating: 0, reviewCount: 0 },
+            { upsert: true, new: true }
+        );
+    }
+};
+
+// Post hooks to recalculate averages after changes
+reviewSchema.post('save', function() {
+    // this.constructor is the model
+    this.constructor.calculateAverageRating(this.tutor_id).catch(err => console.error('Error calculating avg rating after save:', err));
+});
+
+// For findOneAndDelete / findOneAndRemove
+reviewSchema.post('findOneAndDelete', function(doc) {
+    if (doc) {
+        // model is available via this.model
+        this.model.calculateAverageRating(doc.tutor_id).catch(err => console.error('Error calculating avg rating after delete:', err));
+    }
+});
+
 const Review = mongoose.model('Review', reviewSchema);
 
 module.exports = Review;
