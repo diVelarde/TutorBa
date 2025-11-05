@@ -247,6 +247,17 @@ router.patch('/:sessionId/status', async (req, res) => {
             });
         }
 
+        // Only the tutor who owns the session may mark it as completed
+        if (status === 'completed') {
+            const actor = req.body.changedBy;
+            if (!actor) {
+                return res.status(403).json({ message: 'Only the tutor may mark this session as completed (provide changedBy tutor id)' });
+            }
+            if (String(actor) !== String(session.tutor_id)) {
+                return res.status(403).json({ message: 'Only the tutor may mark this session as completed' });
+            }
+        }
+
         const changedBy = req.body.changedBy || null; // optional user id who changed status
         const note = req.body.note || undefined;
 
