@@ -45,6 +45,13 @@ router.post('/', async (req, res) => {
         });
 
         await session.save();
+
+        // Emit realtime event
+        const io = req.app && req.app.get && req.app.get('io');
+        if (io) {
+            io.emit('sessionCreated', session);
+        }
+
         res.status(201).json(session);
     } catch (error) {
         res.status(500).json({
@@ -154,6 +161,12 @@ router.patch('/:sessionId/status', async (req, res) => {
         session.status = status;
         await session.save();
 
+        // Emit realtime update
+        const io = req.app && req.app.get && req.app.get('io');
+        if (io) {
+            io.emit('sessionUpdated', session);
+        }
+
         res.json(session);
     } catch (error) {
         res.status(500).json({
@@ -200,6 +213,12 @@ router.put('/:sessionId', async (req, res) => {
 
         Object.assign(session, req.body);
         await session.save();
+
+        // Emit realtime update for changed session
+        const io = req.app && req.app.get && req.app.get('io');
+        if (io) {
+            io.emit('sessionUpdated', session);
+        }
 
         res.json(session);
     } catch (error) {
