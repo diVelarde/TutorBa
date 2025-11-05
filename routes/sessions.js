@@ -122,7 +122,15 @@ router.post('/', async (req, res) => {
             date,
             time,
             location,
-            status: 'pending'
+            status: 'pending',
+            statusHistory: [
+                {
+                    status: 'pending',
+                    changedBy: student_id || null,
+                    changedAt: new Date(),
+                    note: 'Created'
+                }
+            ]
         });
 
         await session.save();
@@ -239,7 +247,13 @@ router.patch('/:sessionId/status', async (req, res) => {
             });
         }
 
+        const changedBy = req.body.changedBy || null; // optional user id who changed status
+        const note = req.body.note || undefined;
+
         session.status = status;
+        session.statusHistory = session.statusHistory || [];
+        session.statusHistory.push({ status, changedBy, changedAt: new Date(), note });
+
         await session.save();
 
         // Emit realtime update
