@@ -4,6 +4,11 @@ const port = 3000;
 
 app.use(express.json());
 
+// Routes
+const favoritesRouter = require('./routes/favorites');
+
+app.use('/api/favorites', favoritesRouter);
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
