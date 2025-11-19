@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const Favorite = require('../models/favorite');
+const validators = require('../middlewares/validators');
 
 // Add a tutor to student's favorites
-router.post('/', async (req, res) => {
+router.post('/',
+    validators.requireBodyFields(['student_id', 'tutor_id']),
+    validators.validateBodyObjectIds(['student_id', 'tutor_id']),
+    async (req, res) => {
     try {
         const { student_id, tutor_id } = req.body;
-        if (!student_id || !tutor_id) {
-            return res.status(400).json({ message: 'student_id and tutor_id are required' });
-        }
+        // validators ensure required and valid ObjectId
 
         // Prevent duplicate favorites
         const existing = await Favorite.findOne({ student_id, tutor_id });
@@ -29,12 +31,13 @@ router.post('/', async (req, res) => {
 });
 
 // Remove a favorite by IDs (body) or by favorite id param
-router.delete('/', async (req, res) => {
+router.delete('/',
+    validators.requireBodyFields(['student_id', 'tutor_id']),
+    validators.validateBodyObjectIds(['student_id', 'tutor_id']),
+    async (req, res) => {
     try {
         const { student_id, tutor_id } = req.body;
-        if (!student_id || !tutor_id) {
-            return res.status(400).json({ message: 'student_id and tutor_id are required' });
-        }
+        // validators ensure required and valid ObjectId
 
         const removed = await Favorite.findOneAndDelete({ student_id, tutor_id });
         if (!removed) {
@@ -48,7 +51,9 @@ router.delete('/', async (req, res) => {
 });
 
 // Alternative: delete by favorite id
-router.delete('/:favoriteId', async (req, res) => {
+router.delete('/:favoriteId',
+    validators.validateParamObjectId('favoriteId'),
+    async (req, res) => {
     try {
         const removed = await Favorite.findByIdAndDelete(req.params.favoriteId);
         if (!removed) return res.status(404).json({ message: 'Favorite not found' });
@@ -59,7 +64,9 @@ router.delete('/:favoriteId', async (req, res) => {
 });
 
 // Get all favorites for a student (return tutor info populated)
-router.get('/student/:studentId', async (req, res) => {
+router.get('/student/:studentId',
+    validators.validateParamObjectId('studentId'),
+    async (req, res) => {
     try {
         const favorites = await Favorite.find({ student_id: req.params.studentId })
             .populate('tutor_id', 'name email')
@@ -78,7 +85,9 @@ router.get('/student/:studentId', async (req, res) => {
 });
 
 // Get a specific favorite
-router.get('/:favoriteId', async (req, res) => {
+router.get('/:favoriteId',
+    validators.validateParamObjectId('favoriteId'),
+    async (req, res) => {
     try {
         const fav = await Favorite.findById(req.params.favoriteId)
             .populate('student_id', 'name')
