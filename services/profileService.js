@@ -1,4 +1,4 @@
-import Student from "../models/Student.js";
+import Student from "../models/StudentProfile.js";
 import TutorProfile from "../models/TutorProfile.js";
 
 export const fetchProfile = async (id) => 

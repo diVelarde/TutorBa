@@ -1,24 +1,23 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import tutorRoutes from './routes/tutorRoutes.js';
+import profileRoutes from './routes/profileRoutes.js';
 import { config } from 'dotenv';
 
 config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.error('MongoDB connection error:', err));
+app.use("/api/tutors", tutorRoutes);
+app.use("/api/profiles", profileRoutes);
 
-app.use('/tutors', tutorRoutes);
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

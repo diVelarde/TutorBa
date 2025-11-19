@@ -4,6 +4,6 @@ import { tutorValidator, validate } from "../validators/tutorValidator.js";
 
 const router = express.Router();
 
-router.get("/", tutorValidator, validate, tutorControl.getTutors);
+router.get("/", tutorValidator, validate, getTutors);
 
 export default router;
