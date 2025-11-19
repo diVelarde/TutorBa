@@ -8,7 +8,9 @@ import {
   createComment,
   editComment,
   deleteComment,
-  getCommentsByPost
+  getCommentsByPost,
+  votePost,
+  voteComment
 } from "../controllers/forumController.js";
 
 const router = express.Router();
@@ -25,5 +27,8 @@ router.post("/posts/:postId/comments", createComment);
 router.get("/posts/:postId/comments", getCommentsByPost);
 router.put("/comments/:id", editComment);
 router.delete("/comments/:id", deleteComment);
+
+router.post("/posts/:id/vote", votePost);
+router.post("/comments/:id/vote", voteComment);
 
 export default router;
