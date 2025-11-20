@@ -4,20 +4,14 @@ import './App.css';
 import Header from './components/Header.jsx';
 import SideBar from './components/SideBar.jsx';
 import PostCard from './components/PostCard.jsx';
+import Booking from './components/Booking.jsx';
 
 function App() {
     return(
         <>
-            <Header />
-            <SideBar />
-
-            <div className="feed-container">
-                <PostCard />
-                <Booking />
-            </div>
+            <Booking />
         </>
     )
 }
 
 export default App;
- 
