@@ -13,10 +13,7 @@ function App() {
 
             <div className="feed-container">
                 <PostCard />
-                <PostCard />
-                <PostCard />
-                <PostCard />
-                <PostCard />
+                <Booking />
             </div>
         </>
     )
