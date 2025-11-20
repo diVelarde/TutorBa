@@ -13,10 +13,7 @@ const styles = () => (
       box-shadow: 0 4px 8px rgba(0,0,0,0.10);
       background-color: #ffffff;
       transition: 0.2s;
-    }
-
-    .post-card:hover {
-      box-shadow: 0 6px 12px rgba(0,0,0,0.18);
+      margin: 0 auto; 
     }
 
     .post-avatar {
@@ -43,7 +40,7 @@ const styles = () => (
     .post-label {
       font-weight: 600;
       width: 70px;
-      display: inline-block;
+      display: inline;
     }
   `}</style>
 );

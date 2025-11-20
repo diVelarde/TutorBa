@@ -12,11 +12,11 @@ function App() {
             <SideBar />
 
             <div className="feed-container">
-                
                 <PostCard />
                 <PostCard />
                 <PostCard />
-              
+                <PostCard />
+                <PostCard />
             </div>
         </>
     )
