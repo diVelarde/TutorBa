@@ -18,7 +18,7 @@ const favoriteSchema = new mongoose.Schema({
     }
 });
 
-// Ensure a student can't favorite the same tutor twice
+// Ensures students can't favorite the same tutor twice
 favoriteSchema.index({ student_id: 1, tutor_id: 1 }, { unique: true });
 
 const Favorite = mongoose.model('Favorite', favoriteSchema);
