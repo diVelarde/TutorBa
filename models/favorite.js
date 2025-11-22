@@ -1,26 +1,9 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
-const favoriteSchema = new mongoose.Schema({
-    student_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    tutor_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        immutable: true
-    }
+const FavoriteSchema = new mongoose.Schema({
+  studentId: { type: mongoose.Schema.Types.ObjectId, ref: "Student", required: true },
+  tutorId: { type: mongoose.Schema.Types.ObjectId, ref: "Tutor", required: true },
+  createdAt: { type: Date, default: Date.now },
 });
 
-// Ensures students can't favorite the same tutor twice
-favoriteSchema.index({ student_id: 1, tutor_id: 1 }, { unique: true });
-
-const Favorite = mongoose.model('Favorite', favoriteSchema);
-
-module.exports = Favorite;
+export default mongoose.model("Favorite", FavoriteSchema);

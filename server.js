@@ -20,7 +20,7 @@ app.use("/api/profiles", profileRoutes);
 app.use("/api/files", uploadRoutes);
 
 // Routes
-const favoritesRouter = require('./routes/favorites');
+const favoritesRouter = require('./routes/favoriteRoutes.js');
 
 app.use('/api/favorites', favoritesRouter);
 
