@@ -4,7 +4,7 @@ import {
   validateAddFavorite,
   validateRemoveFavorite,
   validateListFavorites,
-} from "../validators/favoriteValidators.js";
+} from "../validators/favoriteValidator.js";
 
 const router = express.Router();
 
