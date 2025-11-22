@@ -19,6 +19,11 @@ app.use("/api/profiles", profileRoutes);
 
 app.use("/api/files", uploadRoutes);
 
+// Routes
+const favoritesRouter = require('./routes/favorites');
+
+app.use('/api/favorites', favoritesRouter);
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
