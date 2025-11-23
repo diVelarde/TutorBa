@@ -9,7 +9,15 @@ import Booking from './components/Booking.jsx';
 function App() {
     return(
         <>
-            <Booking />
+            <Header />
+            <SideBar />
+            <div className = 'feed-container'>
+                <PostCard />
+                <PostCard />
+                <PostCard />
+                <PostCard />
+                <PostCard />
+            </div>
         </>
     )
 }
