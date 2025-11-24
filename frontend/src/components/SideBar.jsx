@@ -15,7 +15,7 @@ function SideBar() {
             to="/booking"
             className="sidebar-link"
             >
-            <BsBook className="sidebar-icon" size={20} /> 
+            <BsBook className="sidebar-icon" size={20} /> Booking
             </Nav.Link>
 
             <Nav.Link href="#share" className="sidebar-link">
