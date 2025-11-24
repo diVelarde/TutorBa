@@ -1,5 +1,6 @@
 import React from 'react';
 import Nav from 'react-bootstrap/Nav';
+import { NavLink } from 'react-router-dom';
 import { BsBook, BsFolder2, BsChatDots } from "react-icons/bs";
 import '../styles/SideBar.css'
 
@@ -9,8 +10,12 @@ function SideBar() {
 
       <div className="sidebar">
         <Nav className="flex-column">
-            <Nav.Link href="#book" className="sidebar-link">
-            <BsBook className="sidebar-icon" size={20} /> Book
+            <Nav.Link 
+            as={NavLink}
+            to="/booking"
+            className="sidebar-link"
+            >
+            <BsBook className="sidebar-icon" size={20} /> 
             </Nav.Link>
 
             <Nav.Link href="#share" className="sidebar-link">
