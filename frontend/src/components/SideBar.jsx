@@ -10,13 +10,11 @@ function SideBar() {
 
       <div className="sidebar">
         <Nav className="flex-column">
-            <Nav.Link 
-            as={NavLink}
-            to="/booking"
-            className="sidebar-link"
-            >
-            <BsBook className="sidebar-icon" size={20} /> Booking
-            </Nav.Link>
+            <Nav.Item>
+              <NavLink to="/booking" end className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
+                <BsBook className="sidebar-icon" size={20} /> Booking
+              </NavLink>
+            </Nav.Item>
 
             <Nav.Link href="#share" className="sidebar-link">
             <BsFolder2 className="sidebar-icon" size={20} /> Share

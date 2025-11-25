@@ -1,12 +1,13 @@
-.container-fluid {
-  height: 100vh;
+.booking-page .container-fluid {
+  /* don't force viewport height; let content-panel manage height */
+  min-height: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 2rem;
 }
 
-.booking-container {
+.booking-page .booking-container {
   display: flex;
   gap: 2rem;
   max-width: 1200px;
@@ -14,13 +15,13 @@
   align-items: stretch;
 }
 
-.booking-container > div {
+.booking-page .booking-container > div {
   flex: 1;
   min-width: 0;
   display: flex;
 }
 
-.card {
+.booking-page .card {
   background-color: white;
   border-radius: 15px !important;
   border: none !important;
@@ -30,12 +31,12 @@
   flex-direction: column;
 }
 
-.card-body {
+.booking-page .card-body {
   display: flex;
   flex-direction: column;
 }
 
-.session-card {
+.booking-page .session-card {
   background-color: white !important;
   border-radius: 15px !important;
   border: none !important;
@@ -48,14 +49,14 @@
   margin-bottom: 0 !important;
 }
 
-.form-control {
+.booking-page .form-control {
   border-radius: 10px !important;
   border: 1px solid #e0e0e0 !important;
   padding: 0.75rem 1rem !important;
   background-color: white !important;
 }
 
-.btn-primary {
+.booking-page .btn-primary {
   background-color: #0d6efd !important;
   border: none !important;
   border-radius: 10px !important;
@@ -63,13 +64,13 @@
   font-weight: 500 !important;
 }
 
-.card-title {
+.booking-page .card-title {
   font-size: 2rem !important;
   font-weight: 600 !important;
   margin-bottom: 2rem !important;
 }
 
-.modal-overlay {
+.booking-page .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -82,7 +83,7 @@
   z-index: 1000;
 }
 
-.session-modal {
+.booking-page .session-modal {
   background: white;
   padding: 2rem;
   border-radius: 15px;
@@ -91,14 +92,14 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.button-group {
+.booking-page .button-group {
   display: flex;
   gap: 1rem;
   justify-content: center;
   margin-top: 1rem;
 }
 
-.sessions-list {
+.booking-page .sessions-list {
   max-height: 400px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -123,21 +124,21 @@
   background: #a8a8a8;
 }
 
-.time-picker-wrapper {
+.booking-page .time-picker-wrapper {
   position: relative;
   flex: 1;
 }
 
-.time-input-wrapper {
+.booking-page .time-input-wrapper {
   position: relative;
 }
 
-.time-input:focus {
+.booking-page .time-input:focus {
   border-color: #0d6efd;
   box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
 }
 
-.time-picker-dropdown-simple {
+.booking-page .time-picker-dropdown-simple {
   position: absolute;
   top: 100%;
   left: 0;
@@ -153,7 +154,7 @@
   overflow-x: hidden;
 }
 
-.time-picker-option {
+.booking-page .time-picker-option {
   padding: 8px 12px;
   cursor: pointer;
   font-size: 14px;
@@ -162,29 +163,29 @@
   user-select: none;
 }
 
-.time-picker-option:hover {
+.booking-page .time-picker-option:hover {
   background-color: #f0f0f0;
 }
 
-.time-picker-option.selected {
+.booking-page .time-picker-option.selected {
   background-color: #e7f1ff;
   color: #0d6efd;
 }
 
-.time-picker-dropdown-simple::-webkit-scrollbar {
+.booking-page .time-picker-dropdown-simple::-webkit-scrollbar {
   width: 8px;
 }
 
-.time-picker-dropdown-simple::-webkit-scrollbar-track {
+.booking-page .time-picker-dropdown-simple::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 4px;
 }
 
-.time-picker-dropdown-simple::-webkit-scrollbar-thumb {
+.booking-page .time-picker-dropdown-simple::-webkit-scrollbar-thumb {
   background: #c1c1c1;
   border-radius: 4px;
 }
 
-.time-picker-dropdown-simple::-webkit-scrollbar-thumb:hover {
+.booking-page .time-picker-dropdown-simple::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
 }
