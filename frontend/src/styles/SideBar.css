@@ -1,13 +1,14 @@
 .sidebar {
-        position: fixed;
+        /* Keep the sidebar as a normal flex child so the content-panel can sit beside it
+           using App.css layout. Use sticky instead of fixed so it stays visible under
+           the fixed header without being removed from document flow. */
+        position: sticky;
         top: 56px;       
-        left: 0;
         width: 200px;
-        height: calc(100vh - 56px);
+        min-height: calc(100vh - 56px);
         background-color: #5bbaf2;
         padding: 1.5rem;
         box-shadow: 2px 0 6px rgba(0,0,0,0.15);
-        z-index: 900;
       }
 
       .sidebar-link {

@@ -1,5 +1,7 @@
 .post-card {
-  width: 300%;
+  /* Make cards responsive: use full width within content panel but constrain max width */
+  width: 100%;
+  max-width: 800px;
   border-radius: 12px;
   padding: 1rem;
   margin-bottom: 1.5rem;

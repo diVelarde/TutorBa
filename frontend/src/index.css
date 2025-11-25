@@ -24,9 +24,15 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
+  min-height: 100vh;
+  /* Avoid centering the app globally (we want app to control layout width) */
+  display: block;
+}
+
+/* Ensure root fills the viewport so .app-layout can stretch */
+#root {
+  width: 100%;
   min-height: 100vh;
 }
 
