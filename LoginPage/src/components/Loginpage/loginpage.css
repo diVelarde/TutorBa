@@ -1,0 +1,11 @@
+.gradient-bg {
+  background: linear-gradient(to right, #d7e9ff, #ffffff);
+}
+
+.login-card {
+  border-radius: 20px;
+}
+
+body {
+  background: #f5f9ff;
+}
