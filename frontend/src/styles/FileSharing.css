@@ -1,0 +1,97 @@
+.file-sharing-card {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    background-color: #f0f8ff; 
+    border: none;
+}
+
+.label-text {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 1.05rem;
+}
+
+.form-control {
+    border-radius: 12px;
+    padding: 10px 15px;
+    border: 1px solid #cceeff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) inset;
+    transition: all 0.2s;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+.from-input {
+    font-weight: 500;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: default;
+    padding: 8px 12px;
+}
+
+.message-textarea {
+    min-height: 150px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: none;
+}
+
+.file-drop-zone {
+    border: 2px dashed #90caf9; 
+    border-radius: 15px;
+    background-color: #ffffff;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.file-drop-zone:hover {
+    background-color: #e3f2fd; 
+    border-color: #42a5f5;
+}
+
+.file-drop-zone.dragging {
+    background-color: #bbdefb; 
+    border-color: #1976d2;
+}
+
+.placeholder-content {
+    color: #42a5f5;
+    font-size: 0.9rem;
+}
+
+.file-name-display {
+    color: #00796b;
+    font-weight: 500;
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #80cbc4;
+    border-radius: 8px;
+    background-color: #e0f2f1;
+}
+
+.share-button {
+    background-color: #007bff; 
+    border-radius: 10px;
+    padding: 10px 0;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.share-button:hover {
+    background-color: #0056b3;
+}

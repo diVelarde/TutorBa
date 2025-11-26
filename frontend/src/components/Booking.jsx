@@ -161,7 +161,8 @@ function Booking() {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="booking-page">
+      <div className="container-fluid">
       <div className="booking-container">
         <div className="col-md-6">
           <div className="card h-100">
@@ -279,6 +280,7 @@ function Booking() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }

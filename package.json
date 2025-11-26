@@ -13,23 +13,18 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/diVelarde/TutorBa/issues"
   },
   "homepage": "https://github.com/diVelarde/TutorBa#readme",
   "dependencies": {
     "bcryptjs": "^3.0.2",
-    "cloudinary": "^2.8.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "express-validator": "^7.0.0",
-    "firebase-admin": "^13.5.0",
     "mongodb": "^6.20.0",
-    "mongoose": "^8.19.2",
-    "multer": "^2.0.2",
-    "streamifier": "^0.1.1"
+    "mongoose": "^8.19.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
