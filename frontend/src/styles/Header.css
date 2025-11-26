@@ -28,7 +28,7 @@
   width: 40px;
   height: 40px;
   background-color: #b39c4d;
-  border-radius: 50%;
+  border-radius: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,8 +47,8 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* closer together */
-  margin-left: 2rem; /* space from logo */
+  gap: 0.5rem; 
+  margin-left: 3rem; 
 }
 
 .nav-link, .nav-link-active, .logout-button {
