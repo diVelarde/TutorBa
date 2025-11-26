@@ -4,9 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import '../styles/FileSharing.css';
 
-const MOCK_FROM_EMAIL = "EdSumalangit@gbox.adnu.edu.ph";
-
 function FileSharing() {
+  const [sender, setSender] = useState('');
   const [recipient, setRecipient] = useState('');
   const [message, setMessage] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
@@ -76,10 +75,11 @@ function FileSharing() {
           <Form.Group className="mb-3">
             <Form.Label className="label-text">From:</Form.Label>
             <Form.Control 
-              type="text" 
-              value={MOCK_FROM_EMAIL} 
-              readOnly 
-              className="from-input"
+              type="email" 
+              placeholder="Your email address"
+              value={sender} 
+              onChange={(e) => setSender(e.target.value)}
+              required
             />
           </Form.Group>
 
