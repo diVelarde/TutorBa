@@ -16,9 +16,11 @@ function SideBar() {
               </NavLink>
             </Nav.Item>
 
-            <Nav.Link href="#share" className="sidebar-link">
-            <BsFolder2 className="sidebar-icon" size={20} /> Share
-            </Nav.Link>
+            <Nav.Item>
+              <NavLink to="/sharing" end className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
+                <BsFolder2 className="sidebar-icon" size={20} /> Share
+              </NavLink>
+            </Nav.Item>
 
             <Nav.Link href="#chat" className="sidebar-link">
             <BsChatDots className="sidebar-icon" size={20} /> Chat
