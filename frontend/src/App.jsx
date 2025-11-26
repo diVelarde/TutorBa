@@ -30,6 +30,7 @@ function App() {
         <Route path="/" element={<LayoutWrapper ContentComponent={PostCard} />} />
         <Route path="/posts" element={<LayoutWrapper ContentComponent={PostCard} />} />
         <Route path="/booking" element={<LayoutWrapper ContentComponent={Booking} />} />
+        <Route path="/sharing" element={<LayoutWrapper ContentComponent={FileSharing} />} />
         
         <Route path="*" element={<div>404 Page Not Found</div>} />
       </Routes>
