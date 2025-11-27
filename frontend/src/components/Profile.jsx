@@ -3,7 +3,7 @@ import '../styles/Profile.css';
 
 function Profile() {
   return (
-    <main className="profile-page">
+    <section className="profile-page">
       <div className="profile-wrapper">
         <section className="profile-left card">
           <div className="profile-top">
@@ -59,7 +59,7 @@ function Profile() {
           </ul>
         </aside>
       </div>
-    </main>
+    </section>
   );
 }
 

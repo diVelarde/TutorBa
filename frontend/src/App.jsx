@@ -7,6 +7,7 @@ import SideBar from './components/SideBar.jsx';
 import PostCard from './components/PostCard.jsx';
 import Booking from './components/Booking.jsx';
 import FileSharing from './components/FileSharing.jsx';
+import Profile from './components/Profile.jsx';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/posts" element={<LayoutWrapper ContentComponent={PostCard} />} />
         <Route path="/booking" element={<LayoutWrapper ContentComponent={Booking} />} />
         <Route path="/sharing" element={<LayoutWrapper ContentComponent={FileSharing} />} />
+        <Route path="/profile" element={<LayoutWrapper ContentComponent={Profile} />} />
         
         <Route path="*" element={<div>404 Page Not Found</div>} />
       </Routes>

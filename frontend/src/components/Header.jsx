@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import { NavLink } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Dropdown from 'react-bootstrap/Dropdown';
 import '../styles/Header.css'
@@ -12,7 +13,7 @@ function Header() {
     
       <Navbar expand="lg" className="blueNavBar" fixed="top">
         <Container fluid>
-          <Navbar.Brand href="/">TutorBa?</Navbar.Brand>
+          <Navbar.Brand as={NavLink} to="/">TutorBa?</Navbar.Brand>
 
           <Nav className="ms-auto">
             <Dropdown align="end">
@@ -20,12 +21,12 @@ function Header() {
                 <img
                   src="https://i.pravatar.cc/300"
                   alt="Profile"
-                  className="profile-avatar"
+                  className="header-avatar"
                 />
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="/profile">Profile</Dropdown.Item>
+                <Dropdown.Item as={NavLink} to="/profile">Profile</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item href="/logout">Logout</Dropdown.Item>
               </Dropdown.Menu>
