@@ -3,30 +3,17 @@ const router = express.Router();
 const Review = require('../models/review');
 const Session = require('../models/session');
 
+const validators = require('../middlewares/validators');
+const reviewChecks = require('../middlewares/reviewChecks');
+
 // Submit a new review
-router.post('/', async (req, res) => {
+router.post('/',
+    validators.requireBodyFields(['student_id','tutor_id','session_id','rating','comment']),
+    validators.validateBodyObjectIds(['student_id','tutor_id','session_id']),
+    reviewChecks.ensureSessionCompletedAndNoReview,
+    async (req, res) => {
     try {
         const { student_id, tutor_id, session_id, rating, comment } = req.body;
-
-        // Verify if the session exists and is completed
-        const session = await Session.findById(session_id);
-        if (!session) {
-            return res.status(404).json({ message: 'Session not found' });
-        }
-        
-        if (session.status !== 'completed') {
-            return res.status(400).json({ 
-                message: 'Reviews can only be submitted for completed sessions' 
-            });
-        }
-
-        // Verify if a review already exists for this session
-        const existingReview = await Review.findOne({ session_id });
-        if (existingReview) {
-            return res.status(400).json({ 
-                message: 'A review already exists for this session' 
-            });
-        }
 
         // Create and save the review
         const review = new Review({

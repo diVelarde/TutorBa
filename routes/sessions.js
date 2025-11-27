@@ -3,86 +3,7 @@ const router = express.Router();
 const Session = require('../models/session');
 const TutorAvailability = require('../models/tutorAvailability');
 
-// Assumption: each session is 60 minutes long. Change SESSION_DURATION_MINUTES if your sessions have different length.
-const SESSION_DURATION_MINUTES = 60;
-
-function parseTimeToMinutes(timeStr) {
-    // expects 'HH:MM'
-    if (!timeStr || typeof timeStr !== 'string') return NaN;
-    const parts = timeStr.split(':');
-    if (parts.length !== 2) return NaN;
-    const h = parseInt(parts[0], 10);
-    const m = parseInt(parts[1], 10);
-    if (Number.isNaN(h) || Number.isNaN(m)) return NaN;
-    return h * 60 + m;
-}
-
-async function isTutorAvailable(tutorId, dateStr, timeStr) {
-    // dateStr can be a Date or date-string; determine day of week
-    const date = new Date(dateStr);
-    if (isNaN(date)) return false;
-    const day = date.getDay(); // 0-6
-    const slotTime = parseTimeToMinutes(timeStr);
-    if (Number.isNaN(slotTime)) return false;
-    const slotEnd = slotTime + SESSION_DURATION_MINUTES;
-
-    const availability = await TutorAvailability.findOne({ tutor_id: tutorId }).lean();
-    if (!availability || !availability.slots || availability.slots.length === 0) return false;
-
-    // Find a slot on that day that fully contains the session [slotTime, slotEnd)
-    for (const s of availability.slots) {
-        if (s.day !== day) continue;
-        const startMin = parseTimeToMinutes(s.start);
-        const endMin = parseTimeToMinutes(s.end);
-        if (Number.isNaN(startMin) || Number.isNaN(endMin)) continue;
-        // ensure session fits completely inside availability slot
-        if (slotTime >= startMin && slotEnd <= endMin) return true;
-    }
-    return false;
-}
-
-async function hasOverlapConflict({ tutorId, studentId, dateStr, timeStr, excludeSessionId = null }) {
-    const startMin = parseTimeToMinutes(timeStr);
-    if (Number.isNaN(startMin)) return { conflict: true, reason: 'invalid_time' };
-    const endMin = startMin + SESSION_DURATION_MINUTES;
-
-    // find existing sessions for tutor and student on same date with pending/confirmed
-    const dateObj = new Date(dateStr);
-    const dateOnly = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
-    const nextDay = new Date(dateOnly);
-    nextDay.setDate(nextDay.getDate() + 1);
-
-    const query = {
-        date: { $gte: dateOnly, $lt: nextDay },
-        status: { $in: ['pending', 'confirmed'] }
-    };
-    if (excludeSessionId) query._id = { $ne: excludeSessionId };
-
-    const sessions = await Session.find(query).lean();
-
-    for (const s of sessions) {
-        // check tutor conflict
-        if (String(s.tutor_id) === String(tutorId)) {
-            const otherStart = parseTimeToMinutes(s.time);
-            if (Number.isNaN(otherStart)) continue;
-            const otherEnd = otherStart + SESSION_DURATION_MINUTES;
-            // overlap if start < otherEnd && otherStart < end
-            if (startMin < otherEnd && otherStart < endMin) {
-                return { conflict: true, reason: 'tutor_conflict', session: s };
-            }
-        }
-        // check student conflict
-        if (String(s.student_id) === String(studentId)) {
-            const otherStart = parseTimeToMinutes(s.time);
-            if (Number.isNaN(otherStart)) continue;
-            const otherEnd = otherStart + SESSION_DURATION_MINUTES;
-            if (startMin < otherEnd && otherStart < endMin) {
-                return { conflict: true, reason: 'student_conflict', session: s };
-            }
-        }
-    }
-    return { conflict: false };
-}
+const scheduling = require('../middlewares/scheduling');
 
 // Create a new tutoring session
 router.post('/', async (req, res) => {
@@ -95,7 +16,7 @@ router.post('/', async (req, res) => {
         }
 
         // Check tutor availability
-        const available = await isTutorAvailable(tutor_id, date, time);
+        const available = await scheduling.isTutorAvailable(tutor_id, date, time);
         if (!available) {
             return res.status(400).json({
                 message: 'Tutor is not available at this time'
@@ -103,7 +24,7 @@ router.post('/', async (req, res) => {
         }
 
         // Check for overlapping scheduling conflicts (tutor or student)
-        const conflictCheck = await hasOverlapConflict({ tutorId: tutor_id, studentId: student_id, dateStr: date, timeStr: time });
+        const conflictCheck = await scheduling.hasOverlapConflict({ tutorId: tutor_id, studentId: student_id, dateStr: date, timeStr: time });
         if (conflictCheck.conflict) {
             if (conflictCheck.reason === 'invalid_time') {
                 return res.status(400).json({ message: 'Invalid time format' });
@@ -122,7 +43,15 @@ router.post('/', async (req, res) => {
             date,
             time,
             location,
-            status: 'pending'
+            status: 'pending',
+            statusHistory: [
+                {
+                    status: 'pending',
+                    changedBy: student_id || null,
+                    changedAt: new Date(),
+                    note: 'Created'
+                }
+            ]
         });
 
         await session.save();
@@ -239,7 +168,24 @@ router.patch('/:sessionId/status', async (req, res) => {
             });
         }
 
+        // Only the tutor who owns the session may mark it as completed
+        if (status === 'completed') {
+            const actor = req.body.changedBy;
+            if (!actor) {
+                return res.status(403).json({ message: 'Only the tutor may mark this session as completed (provide changedBy tutor id)' });
+            }
+            if (String(actor) !== String(session.tutor_id)) {
+                return res.status(403).json({ message: 'Only the tutor may mark this session as completed' });
+            }
+        }
+
+        const changedBy = req.body.changedBy || null; // optional user id who changed status
+        const note = req.body.note || undefined;
+
         session.status = status;
+        session.statusHistory = session.statusHistory || [];
+        session.statusHistory.push({ status, changedBy, changedAt: new Date(), note });
+
         await session.save();
 
         // Emit realtime update
@@ -286,7 +232,7 @@ router.put('/:sessionId', async (req, res) => {
             }
 
             // Check overlapping conflicts excluding this session
-            const conflictCheck = await hasOverlapConflict({ tutorId: session.tutor_id, studentId: session.student_id, dateStr: newDate, timeStr: newTime, excludeSessionId: session._id });
+            const conflictCheck = await scheduling.hasOverlapConflict({ tutorId: session.tutor_id, studentId: session.student_id, dateStr: newDate, timeStr: newTime, excludeSessionId: session._id });
             if (conflictCheck.conflict) {
                 if (conflictCheck.reason === 'invalid_time') {
                     return res.status(400).json({ message: 'Invalid time format' });
