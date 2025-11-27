@@ -14,6 +14,7 @@ import Home from './pages/home.jsx';
 import FindTutors from './pages/FindTutors.jsx';
 import TutorProfile from './pages/TutorProfile.jsx';
 import MySessions from './pages/MySessions.jsx';
+import Chat from './pages/Chat.jsx';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/find-tutors" element={<FindTutors />} />
                 <Route path="/tutorprofile/:id" element={<TutorProfile />} />
                 <Route path="/sessions" element={<MySessions />} />
+                <Route path="/messages" element={<Chat />} />
 
                 <Route path="*" element={<div>404 Page Not Found</div>} />
                 </Routes>
