@@ -13,6 +13,7 @@ import Layout from './components/Layout.jsx';
 import Home from './pages/home.jsx';
 import FindTutors from './pages/FindTutors.jsx';
 import TutorProfile from './pages/TutorProfile.jsx';
+import MySessions from './pages/MySessions.jsx';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/find-tutors" element={<FindTutors />} />
                 <Route path="/tutorprofile/:id" element={<TutorProfile />} />
+                <Route path="/sessions" element={<MySessions />} />
 
                 <Route path="*" element={<div>404 Page Not Found</div>} />
                 </Routes>
