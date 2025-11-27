@@ -28,6 +28,18 @@ const sessionSchema = new mongoose.Schema({
         enum: ['pending', 'confirmed', 'cancelled', 'completed'],
         default: 'pending'
     },
+    // Track status changes over time
+    statusHistory: {
+        type: [
+            {
+                status: { type: String, enum: ['pending', 'confirmed', 'cancelled', 'completed'], required: true },
+                changedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
+                changedAt: { type: Date, default: Date.now },
+                note: { type: String }
+            }
+        ],
+        default: []
+    },
     createdAt: {
         type: Date,
         default: Date.now

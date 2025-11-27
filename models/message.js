@@ -13,7 +13,6 @@ const messageSchema = new mongoose.Schema({
     },
     content: {
         type: String,
-        required: true,
         trim: true
     },
     timestamp: {
@@ -25,9 +24,12 @@ const messageSchema = new mongoose.Schema({
         default: false
     },
     attachments: [{
-        filename: String,
-        path: String,
-        mimetype: String
+        filename: { type: String },
+        originalname: { type: String },
+        path: { type: String },
+        url: { type: String },
+        mimetype: { type: String },
+        size: { type: Number }
     }]
 });
 
