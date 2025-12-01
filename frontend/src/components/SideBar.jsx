@@ -22,9 +22,12 @@ function SideBar() {
               </NavLink>
             </Nav.Item>
 
-            <Nav.Link href="#chat" className="sidebar-link">
-            <BsChatDots className="sidebar-icon" size={20} /> Chat
-            </Nav.Link>
+            <Nav.Item>
+              <NavLink to="/chat" end className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
+                <BsFolder2 className="sidebar-icon" size={20} /> Chat
+              </NavLink>
+            </Nav.Item>
+
         </Nav>
       </div>
     </>
