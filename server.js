@@ -16,12 +16,16 @@ mongoose.connect('mongodb://localhost:27017/tutorba', {
     console.error('MongoDB connection error:', error);
 });
 
-// Routes
-const reviewsRouter = require('routes/reviews');
-const sessionsRouter = require('routes/sessions');
+// Routes (use relative paths)
+const reviewsRouter = require('./routes/reviews');
+const sessionsRouter = require('./routes/sessions');
+const messagesRouter = require('./routes/messages');
+const favoritesRouter = require('./routes/favorites');
 
 app.use('/api/reviews', reviewsRouter);
 app.use('/api/sessions', sessionsRouter);
+app.use('/api/messages', messagesRouter);
+app.use('/api/favorites', favoritesRouter);
 
 app.get('/', (req, res) => {
     res.send('TutorBa API Server');
