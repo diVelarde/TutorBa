@@ -1,0 +1,34 @@
+/* Overlay chat panel — sits to the right of the sidebar and on top of content */
+.chat-overlay {
+  position: fixed;
+  top: 56px; /* below the header */
+  left: calc(200px + 12px); /* just to the right of the sidebar */
+  width: 391px; /* match desired width */
+  height: calc(100vh - 56px);
+  background: #eafdfb;
+  border-radius: 12px;
+  padding: 12px;
+  z-index: 900; /* below header (1000) but above content */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-header{ display:flex; justify-content:space-between; align-items:center; }
+.chat-title{ font-size: 0.9rem; font-weight: 600; color: #002b3a; }
+.chat-close{ background:transparent; border: none; font-size: 1.4rem; cursor: pointer; color:#666; }
+
+.chat-body{ display:flex; flex-direction:column; gap: 12px; }
+.chat-brand{ text-align:center; font-family: 'Dancing Script', cursive; font-size: 1.25rem; color: #0b3f5b; }
+
+.chat-list{ display:flex; flex-direction:column; gap:10px; overflow-y:auto; padding-right:6px; }
+.chat-item{ display:flex; gap:12px; align-items:center; background: #fff; border-radius: 8px; padding: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.chat-avatar{ width:44px; height:44px; border-radius:50%; background:#dceefc; }
+.chat-name{ font-weight:700; color:#042b3a; }
+.chat-sub{ font-size:0.85rem; color:#6b7c8c; }
+
+/* Hide on narrow screens — in a real app you might switch to off-canvas */
+@media (max-width: 700px) {
+  .chat-overlay { display: none; }
+}

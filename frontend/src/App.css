@@ -1,0 +1,62 @@
+/* 1. GLOBAL CLEANUP: Ensures the page starts clean */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. MAIN LAYOUT CONTAINER: Stacks Header on top of main-area */
+.app-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Ensure the layout fills full viewport width even if body has center alignment */
+    width: 100%;
+}
+
+/* 3. MAIN AREA: Handles the horizontal split (Sidebar & Content) */
+.main-area {
+    display: flex;
+    flex-grow: 1; 
+    
+    /* Pushes content down to clear the 56px fixed Navbar */
+    padding-top: 56px; 
+    
+    /* Ensures this container spans the full width below the Header */
+    width: 100%;
+    /* Allow child flex items to shrink or grow within the viewport */
+    min-width: 0;
+}
+
+/* 4. SIDEBAR: Fixed width and calculated height */
+.sidebar {
+    width: 200px;
+    flex-shrink: 0;
+    background-color: #58BAF2;
+
+    /* CRITICAL FIX: Calculates height from viewport minus Header height */
+    min-height: calc(100vh - 56px); 
+    height: 100%; 
+    /* Keep the sidebar from pushing the content; it's a sibling in the flex row */
+    align-self: stretch;
+}
+
+/* 5. CONTENT PANEL: Fills all remaining space and centers content */
+.content-panel {
+    flex-grow: 1; /* Takes ALL remaining horizontal space */
+    
+    /* CRITICAL FIX: Forces content panel to match the sidebar's height */
+    min-height: calc(100vh - 56px);
+    height: 100%; 
+    
+    padding: 20px; 
+    background-color: white; 
+    overflow-y: auto; 
+    /* Allow this flex child to shrink as needed and fill horizontal space properly */
+    min-width: 0;
+
+    /* Centering the PostCard */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: flex-start; /* Keep content at the top */
+}
