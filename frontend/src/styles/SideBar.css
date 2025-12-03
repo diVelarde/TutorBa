@@ -15,6 +15,14 @@
   align-items: center;
   color: #333;
   text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0.5rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .sidebar-link.active {
