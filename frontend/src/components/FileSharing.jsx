@@ -67,7 +67,7 @@ function FileSharing() {
 
 
   return (
-    <Card className="file-share-card">
+    <Card className="file-sharing-card">
       <Card.Body>
         <Form onSubmit={handleShare}>
           

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { BsBook, BsFolder2, BsChatDots } from "react-icons/bs";
 import '../styles/SideBar.css'
 
-function SideBar() {
+function SideBar({ onChatClick }) {
   return (
     <>
 
@@ -23,9 +23,9 @@ function SideBar() {
             </Nav.Item>
 
             <Nav.Item>
-              <NavLink to="/chat" end className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}>
-                <BsFolder2 className="sidebar-icon" size={20} /> Chat
-              </NavLink>
+              <button type="button" className="sidebar-link" onClick={() => onChatClick && onChatClick()}>
+                <BsChatDots className="sidebar-icon" size={20} /> Chat
+              </button>
             </Nav.Item>
 
         </Nav>

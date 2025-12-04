@@ -9,19 +9,23 @@ import PostCard from './components/PostCard.jsx';
 import Booking from './components/Booking.jsx';
 import FileSharing from './components/FileSharing.jsx';
 import Profile from './components/Profile.jsx';
+import { useState } from 'react';
 
 
 function App() {
+    const [showChat, setShowChat] = useState(false);
+
     const LayoutWrapper = ({ ContentComponent }) => (
     <div className="app-layout">
       <Header />
       <div className="main-area">
-        <SideBar />
+        <SideBar onChatClick={() => setShowChat(prev => !prev)} />
         <main className="content-panel">
           {/* This is the dynamic component */}
           <ContentComponent /> 
         </main>
       </div>
+      {showChat && <Chat onClose={() => setShowChat(false)} />}
     </div>
   );
 
@@ -34,7 +38,6 @@ function App() {
         <Route path="/booking" element={<LayoutWrapper ContentComponent={Booking} />} />
         <Route path="/sharing" element={<LayoutWrapper ContentComponent={FileSharing} />} />
         <Route path="/profile" element={<LayoutWrapper ContentComponent={Profile} />} />
-        <Route path="/chat" element={<LayoutWrapper ContentComponent={Chat} />} />
         
         <Route path="*" element={<div>404 Page Not Found</div>} />
       </Routes>
