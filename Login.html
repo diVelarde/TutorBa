@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TutorBa?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Hurricane&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Poppins', -apple-system, Roboto, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .login-container {
+      min-height: 100vh;
+      width: 100%;
+      background: linear-gradient(
+          270deg,
+          rgba(227, 242, 253, 0) 0%,
+          rgba(107, 192, 254, 0.17) 54.33%,
+          rgba(6, 150, 255, 0.2) 100%
+        ),
+        #fff;
+      backdrop-filter: blur(2px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .login-wrapper {
+      width: 100%;
+      max-width: 450px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .logo-text {
+      font-family: 'Hurricane', cursive;
+      font-size: 6rem;
+      font-weight: 400;
+      color: #284053;
+      line-height: 1;
+      white-space: nowrap;
+      margin: 5;
+      margin-right: 2px;
+      padding-left: 200px;
+    }
+
+    .logo-icon {
+      width: 89px;
+      height: 72px;
+      stroke: #273c54;
+      margin: 0 auto;
+      display: block;
+    }
+
+    /* Right Side - Login Form Card */
+    .form-card {
+      width: 100%;
+      max-width: 450px;
+      backdrop-filter: blur(2px);
+      background: linear-gradient(
+          270deg,
+          rgba(233, 219, 219, 0) 0%,
+          rgba(233, 219, 219, 0.2) 100%
+        ),
+        #e1eff2;
+      border: 1px solid #fff;
+      border-radius: 43px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Form Title */
+    .form-title {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-title h2 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #090914;
+      letter-spacing: -0.05em;
+      line-height: 1.2;
+    }
+
+    .form-title p {
+      font-size: 1.125rem;
+      color: #52525b;
+      line-height: 1.5;
+    }
+
+    /* Form Element */
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Input Groups */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-label {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #090914;
+      line-height: 1.5;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 1rem;
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      color: #090914;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .form-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #0696ff;
+      border-color: transparent;
+    }
+
+    .form-input::placeholder {
+      color: #94a3b8;
+    }
+
+    /* Checkbox */
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+
+    .form-checkbox {
+      width: 1.25rem;
+      height: 1.25rem;
+      cursor: pointer;
+      accent-color: #0696ff;
+      border: 1px solid #94a3b8;
+      border-radius: 0.3125rem;
+    }
+
+    .checkbox-label {
+      font-size: 0.875rem;
+      color: #18181b;
+      cursor: pointer;
+      user-select: none;
+      line-height: 1.4;
+    }
+
+    /* Login Button */
+    .btn-login {
+      width: 100%;
+      background-color: #0696ff;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 4px 12px rgba(6, 150, 255, 0.3);
+      line-height: 1.75;
+      letter-spacing: -0.01em;
+    }
+
+    .btn-login:hover {
+      background-color: #0580e0;
+      box-shadow: 0 6px 16px rgba(6, 150, 255, 0.4);
+    }
+
+    .btn-login:active {
+      transform: scale(0.98);
+    }
+
+    /* Sign Up Section */
+    .signup-section {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .signup-text {
+      font-size: 0.875rem;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    .btn-signup {
+      background-color: #0696ff;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.375rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 2px 8px rgba(6, 150, 255, 0.2);
+    }
+
+    .btn-signup:hover {
+      background-color: #0580e0;
+      box-shadow: 0 4px 12px rgba(6, 150, 255, 0.3);
+    }
+
+    .btn-signup:active {
+      transform: scale(0.96);
+    }
+
+    /* Responsive Design */
+    @media (min-width: 1024px) {
+      .login-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 4rem;
+        padding: 2rem;
+      }
+
+      .logo-wrapper {
+        align-items: flex-start;
+        flex: 1;
+      }
+
+      .login-wrapper {
+        max-width: none;
+        flex: 1;
+      }
+
+      .logo-text {
+        font-size: 7rem;
+      }
+
+      .logo-icon {
+        width: 113px;
+        height: 90px;
+      }
+
+      .form-title h2 {
+        font-size: 3.25rem;
+      }
+
+      .form-title p {
+        font-size: 1.125rem;
+      }
+
+      .form-card {
+        padding: 4rem;
+      }
+    }
+
+    @media (min-width: 640px) {
+      .logo-text {
+        font-size: 7rem;
+      }
+
+      .logo-icon {
+        width: 113px;
+        height: 90px;
+      }
+
+      .form-title h2 {
+        font-size: 3rem;
+      }
+
+      .form-card {
+        padding: 2.5rem;
+      }
+    }
+
+    @media (max-width: 639px) {
+      .logo-text {
+        font-size: 4rem;
+      }
+
+      .logo-icon {
+        width: 3rem;
+        height: 2.5rem;
+      }
+
+      .form-title h2 {
+        font-size: 2rem;
+      }
+
+      .form-title p {
+        font-size: 1rem;
+      }
+
+      .form-card {
+        padding: 1.5rem;
+      }
+
+      .form-content {
+        gap: 1.5rem;
+      }
+
+      .form {
+        gap: 1.5rem;
+      }
+
+      .btn-signup {
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <!-- Logo Section -->
+    <div class="logo-wrapper">
+      <h1 class="logo-text">TutorBa?</h1>
+      <svg
+        class="logo-icon"
+        viewBox="0 0 83 74"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M41.375 71.875C41.375 71.875 29.2358 70.3533 21.5241 70.3533C17.2346 70.3533 11.6378 70.8241 7.51512 71.2419C4.51809 71.5457 1.875 69.2095 1.875 66.1972V17.4116C1.875 15.3784 3.1059 13.5412 5.05772 12.9717C6.59687 12.5226 8.53579 12.0552 10.5078 11.8361M41.375 71.875C41.375 71.875 53.1106 70.3533 60.8223 70.3533C65.1756 70.3533 71.0042 70.8381 75.2552 71.2604C78.2446 71.5574 80.875 69.2246 80.875 66.2205V17.2721C80.875 15.3095 79.7242 13.5227 77.8404 12.9724C76.5161 12.5856 74.847 12.1948 73.0154 11.9913M41.375 71.875V62.732M41.375 62.732C41.375 62.732 31.086 61.2229 24.9167 61.2229C22.1204 61.2229 18.816 61.5335 16.0385 61.8733C12.9395 62.2524 10.127 59.8585 10.1517 56.7364L10.5078 11.8361M41.375 62.732C41.375 62.732 51.1267 61.2229 57.2961 61.2229C60.2106 61.2229 63.797 61.595 66.7701 61.9877C69.8478 62.3942 72.6665 60.0489 72.689 56.9445L73.0154 11.9913M41.375 62.732V3.39673M10.5078 11.8361V7.65038C10.5078 5.19826 12.2847 3.10936 14.7162 2.79225C17.9724 2.36759 22.4928 1.875 25.9414 1.875C32.0028 1.875 41.375 3.39673 41.375 3.39673M73.0154 11.9913V7.6672C73.0154 5.20771 71.2289 3.11512 68.7893 2.8035C65.445 2.37634 60.7605 1.875 57.1952 1.875C50.9837 1.875 41.375 3.39673 41.375 3.39673"
+          stroke="#273c54"
+          stroke-width="3.75"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div class="login-wrapper">
+      <!-- Right Side - Login Form -->
+      <div class="form-card">
+        <div class="form-content">
+          <!-- Title -->
+          <div class="form-title">
+            <h2>Log in</h2>
+            <p>Access your account</p>
+          </div>
+
+          <!-- Form -->
+          <form class="form" onsubmit="handleLogin(event)">
+            <!-- Email Input -->
+            <div class="form-group">
+              <label for="email" class="form-label">Email address</label>
+              <input
+                type="email"
+                id="email"
+                class="form-input"
+                required
+              />
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                class="form-input"
+                required
+              />
+            </div>
+
+            <!-- Remember Me -->
+            <div class="checkbox-group">
+              <input
+                type="checkbox"
+                id="remember"
+                class="form-checkbox"
+              />
+              <label for="remember" class="checkbox-label">
+                Remember me
+              </label>
+            </div>
+
+            <!-- Login Button -->
+            <button type="submit" class="btn-login">Log in</button>
+
+            <!-- Sign Up Link -->
+            <div class="signup-section">
+              <span class="signup-text">Don't have an account?</span>
+              <button
+                type="button"
+                class="btn-signup"
+                onclick="handleSignUp()"
+              >
+                Sign Up
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const rememberMe = document.getElementById('remember').checked;
+      console.log('Login attempt:', { email, password, rememberMe });
+    }
+
+    function handleSignUp() {
+      console.log('Navigate to sign up');
+    }
+  </script>
+</body>
+</html>
