@@ -72,7 +72,7 @@ reviewSchema.statics.calculateAverageRating = async function(tutorId) {
         }}
     ]);
 
-    const TutorRating = require('./tutorRating');
+    const TutorRating = require('./TutorRating');
 
     if (result.length > 0) {
         const { averageRating, reviewCount } = result[0];
