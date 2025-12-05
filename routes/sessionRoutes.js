@@ -229,4 +229,40 @@ router.put('/:sessionId', async (req, res) => {
     }
 });
 
+// Get sessions for a user (either tutor or student) with optional role and status filters
+// Example: GET /api/sessions/user/USER_ID?role=tutor&status=confirmed
+router.get('/user/:userId', async (req, res) => {
+    try {
+        const { role, status } = req.query;
+        const userId = req.params.userId;
+        const query = {};
+
+        if (role === 'tutor') {
+            query.tutor_id = userId;
+        } else if (role === 'student') {
+            query.student_id = userId;
+        } else {
+            // no role specified -> return sessions where user is tutor or student
+            query.$or = [
+                { tutor_id: userId },
+                { student_id: userId }
+            ];
+        }
+
+        if (status) query.status = status;
+
+        const sessions = await Session.find(query)
+            .populate('tutor_id', 'name email')
+            .populate('student_id', 'name email')
+            .sort({ date: 1, time: 1 });
+
+        res.json(sessions);
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error fetching user sessions',
+            error: error.message
+        });
+    }
+});
+
 module.exports = router;
