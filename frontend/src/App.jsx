@@ -10,7 +10,7 @@ import PostCard from './components/PostCard.jsx';
 import Booking from './components/Booking.jsx';
 import FileSharing from './components/FileSharing.jsx';
 import Layout from './components/Layout.jsx';
-import Home from './pages/home.jsx';
+import Home from './pages/Home.jsx';
 import FindTutors from './pages/FindTutors.jsx';
 import TutorProfile from './pages/TutorProfile.jsx';
 import MySessions from './pages/MySessions.jsx';

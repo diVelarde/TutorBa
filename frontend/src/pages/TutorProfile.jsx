@@ -1,12 +1,15 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Star, Award, Calendar, MessageSquare, Clock, BookOpen } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
+
 import '../styles/TutorProfile.css';
 
 export default function TutorProfile() {
   const { id } = useParams();
   const [tutor, setTutor] = useState(null);
   const [activeTab, setActiveTab] = useState('subjects');
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTutor({
@@ -73,11 +76,17 @@ export default function TutorProfile() {
 
           {/* ACTION BUTTONS */}
           <div className="profile-actions">
-            <button className="book-session">
+            <button 
+              className="book-session"
+              onClick={() => navigate("/booking")}
+            >
               <Calendar className="button-icon" />
               Book Session
             </button>
-            <button className="send-message">
+            <button 
+              className="send-message"
+              onClick={() => navigate(`/messages?tutor=${tutor.id}`)}
+            >
               <MessageSquare className="button-icon" />
               Send Message
             </button>
