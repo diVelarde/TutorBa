@@ -32,7 +32,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        
         <Route path="/" element={<LayoutWrapper ContentComponent={PostCard} />} />
         <Route path="/posts" element={<LayoutWrapper ContentComponent={PostCard} />} />
         <Route path="/booking" element={<LayoutWrapper ContentComponent={Booking} />} />
