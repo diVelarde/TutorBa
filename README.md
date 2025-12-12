@@ -305,7 +305,11 @@ For support, email [support email] or open an issue on GitHub.
 
 ## Authors
 
-- **diVelarde** - Initial work
+- Despi
+- Esmabe
+- Palomania
+- Raposa
+- Velarde
 
 ## Acknowledgments
 
