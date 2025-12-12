@@ -1,24 +1,29 @@
 import express from 'express';
-import mongoose from 'mongoose';
+import { config } from 'dotenv';
 import tutorRoutes from './routes/tutorRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
-import uploadRoutes from "./routes/uploadRoutes.js";
+import uploadRoutes from './routes/uploadRoutes.js';
 import favoritesRouter from './routes/favoriteRoutes.js';
-import { config } from 'dotenv';
+import connectDB from './config/database.js';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Routes (use relative paths)
+// Import CommonJS routers using require for compatibility
 const reviewsRouter = require('./routes/reviews');
 const sessionsRouter = require('./routes/sessions');
 const messagesRouter = require('./routes/messages');
-const favoritesRouter = require('./routes/favorites');
+
+// Connect to MongoDB
+connectDB();
 
 app.use('/api/reviews', reviewsRouter);
 app.use('/api/sessions', sessionsRouter);
