@@ -1,0 +1,272 @@
+.favorites-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Loading */
+.favorites-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+}
+
+.favorites-spinner {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 3px solid #E5E7EB;
+  border-top-color: #B39C4D;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Header */
+.favorites-header {
+  margin-bottom: 2rem;
+}
+
+.favorites-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #433E3F;
+  margin: 0 0 0.5rem;
+}
+
+.favorites-subtitle {
+  color: #6B7280;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Empty State */
+.favorites-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 0.75rem;
+  color: #6B7280;
+}
+
+.favorites-empty svg {
+  color: #E2B4BD;
+  margin-bottom: 1rem;
+}
+
+.favorites-empty h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #433E3F;
+  margin: 0 0 0.5rem;
+}
+
+.favorites-empty p {
+  margin: 0 0 1.5rem;
+}
+
+/* Grid */
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card */
+.favorites-card {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.favorites-card:hover {
+  border-color: #B39C4D;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.favorites-card-content {
+  padding: 1.5rem;
+}
+
+/* Tutor Header */
+.favorites-tutor-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.favorites-avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: #CAE9FF;
+  color: #433E3F;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.favorites-tutor-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.favorites-tutor-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #433E3F;
+  margin: 0 0 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.favorites-tutor-dept {
+  font-size: 0.875rem;
+  color: #6B7280;
+  margin: 0;
+}
+
+.favorites-remove-btn {
+  background: none;
+  border: none;
+  color: #9CA3AF;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: color 0.2s;
+}
+
+.favorites-remove-btn:hover {
+  color: #EF4444;
+  background: #FEF2F2;
+}
+
+/* Bio */
+.favorites-tutor-bio {
+  font-size: 0.875rem;
+  color: #6B7280;
+  line-height: 1.5;
+  margin: 0 0 1rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Subjects */
+.favorites-subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.favorites-badge {
+  background: #F3F4F6;
+  color: #4B5563;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+.favorites-badge-outline {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  color: #6B7280;
+}
+
+/* Stats */
+.favorites-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid #E5E7EB;
+  margin-bottom: 1rem;
+}
+
+.favorites-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.star-icon {
+  color: #FBBF24;
+  fill: #FBBF24;
+}
+
+.stat-value {
+  font-weight: 600;
+  color: #374151;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #6B7280;
+}
+
+.favorites-price {
+  font-weight: 600;
+  color: #5FA8D3;
+}
+
+/* Actions */
+.favorites-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.favorites-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.favorites-btn.full-width {
+  width: 100%;
+}
+
+.favorites-btn-primary {
+  background: #B39C4D;
+  color: #fff;
+  border-color: #B39C4D;
+}
+
+.favorites-btn-primary:hover {
+  background: #9d8842;
+  border-color: #9d8842;
+}
+
+.favorites-btn-outline {
+  background: #fff;
+  border-color: #E5E7EB;
+  color: #374151;
+}
+
+.favorites-btn-outline:hover {
+  background: #F9FAFB;
+  border-color: #D1D5DB;
+}

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* 1. GLOBAL CLEANUP: Ensures the page starts clean */
 html, body, #root {
     height: 100%;
@@ -59,4 +60,15 @@ html, body, #root {
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: flex-start; /* Keep content at the top */
+=======
+.feed-container {
+  width: 100%;
+  padding-left: 420px;  
+  padding-top: 80px;
+  flex-direction: column;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  gap: 20px;
+>>>>>>> origin/MERGE
 }

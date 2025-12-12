@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  .blueNavBar {
         background-color: #5bbaf2;
         height: 56px;   
@@ -15,9 +16,128 @@
         cursor: pointer;
         border: 2px solid white;
       }
+=======
+.header {
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
 
-      .dropdown-menu-end {
-        right: 0 !important;
-        left: auto !important;
-      }
-  
+.header-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between; /* logo left, nav right */
+  align-items: center;
+  height: 64px;
+}
+>>>>>>> origin/MERGE
+
+/* Logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #b39c4d;
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #433e3f;
+}
+
+/* Nav */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; 
+  margin-left: 3rem; 
+}
+
+.nav-link, .nav-link-active, .logout-button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem; /* compact */
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.nav-link {
+  color: #433e3f;
+}
+
+.nav-link:hover {
+  color: #b39c4d;
+}
+
+.nav-link-active {
+  color: white;
+  background-color: #1f2937;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  color: #433e3f;
+}
+
+.logout-button:hover {
+  color: red;
+}
+
+/* Mobile menu */
+.mobile-menu-button {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding-top: 2rem;
+    gap: 1rem;
+    z-index: 50;
+  }
+
+  .nav.nav-open {
+    display: flex;
+  }
+
+  .nav-link, .nav-link-active, .logout-button {
+    width: 80%;
+    justify-content: center;
+    padding: 0.75rem 0;
+    font-size: 1rem;
+  }
+}

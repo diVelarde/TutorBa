@@ -1,0 +1,238 @@
+.sessions-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.sessions-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #433E3F;
+}
+
+.sessions-subtitle {
+  color: #6B7280;
+}
+
+.sessions-tabs-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  background: #F3F4F6;
+  border-radius: 0.5rem;
+  padding: 4px;
+  margin-top: 1.5rem;
+}
+
+.sessions-tabs-trigger {
+  outline: none;
+  padding: 0.625rem 1rem;
+  border-radius: 0.375rem;
+  background: transparent;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #6B7280;
+}
+
+.sessions-tabs-trigger:hover {
+  color: #433E3F;
+}
+
+.sessions-tabs-trigger.active {
+  background: #fff;
+  color: #433E3F;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.sessions-card {
+  border: 1px solid #E5E7EB;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s;
+}
+
+.sessions-card:hover {
+  border-color: #5FA8D3;
+}
+
+.sessions-card-content {
+  padding: 1.5rem;
+}
+
+.sessions-card-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .sessions-card-layout {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.sessions-card-info {
+  flex: 1;
+}
+
+.sessions-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.sessions-subject {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #433E3F;
+  margin: 0;
+}
+
+.sessions-other-user {
+  color: #6B7280;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.sessions-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: #4B5563;
+}
+
+.sessions-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sessions-rate {
+  color: #5FA8D3;
+  font-weight: 600;
+}
+
+.sessions-notes {
+  color: #4B5563;
+  background: #F9FAFB;
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.sessions-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+.sessions-status-pending {
+  background: #FEF3C7;
+  color: #92400E;
+}
+.sessions-status-confirmed {
+  background: #DBEAFE;
+  color: #1E40AF;
+}
+.sessions-status-ongoing {
+  background: #D1FAE5;
+  color: #065F46;
+}
+.sessions-status-completed {
+  background: #F3F4F6;
+  color: #374151;
+}
+.sessions-status-cancelled {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+.sessions-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+  .sessions-actions {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+.sessions-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.sessions-btn-primary {
+  background: #5FA8D3;
+  color: #fff;
+}
+.sessions-btn-primary:hover {
+  background: #4a8db8;
+}
+
+.sessions-btn-gold {
+  background: #B39C4D;
+  color: #fff;
+}
+.sessions-btn-gold:hover {
+  background: #9d8842;
+}
+
+.sessions-btn-outline {
+  background: transparent;
+  border: 1px solid #E5E7EB;
+  color: #374151;
+}
+.sessions-btn-outline:hover {
+  background: #F9FAFB;
+}
+
+.sessions-btn-danger {
+  background: transparent;
+  color: #DC2626;
+  border: 1px solid #E5E7EB;
+}
+.sessions-btn-danger:hover {
+  background: #FEF2F2;
+}
+
+.sessions-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 16rem;
+}
+
+.sessions-empty {
+  padding: 3rem;
+  text-align: center;
+  color: #9CA3AF;
+}
+
+.sessions-empty-icon {
+  color: #D1D5DB;
+  margin-bottom: 1rem;
+}
