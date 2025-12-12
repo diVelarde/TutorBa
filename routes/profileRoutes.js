@@ -1,8 +1,8 @@
 import express from "express";
-import { getProfile, updateProfile } from "./controllers/profileController.js";
-import { ensureProfileOwnership } from "./middleware/authMiddleware.js";
-import { studentProfileValidator, validate as validateStudent } from "./validators/studentProfileValidator.js";
-import { tutorProfileValidator, validate as validateTutor } from "./validators/tutorProfileValidator.js";
+import { getProfile, updateProfile } from "../controllers/profileController.js";
+import { ensureProfileOwnership } from "../middleware/authMiddleware.js";
+import { studentProfileValidator, validate as validateStudent } from "../validators/studentProfileValidator.js";
+import { tutorProfileValidator, validate as validateTutor } from "../validators/tutorProfileValidator.js";
 
 const router = express.Router();
 
