@@ -3,8 +3,8 @@ const router = express.Router();
 const Review = require('./models/Review');
 const Session = require('./models/Session');
 
-const validators = require('../middlewares/validators');
-const reviewChecks = require('../middlewares/reviewChecks');
+const validators = require('../middleware/validators');
+const reviewChecks = require('../middleware/reviewChecks');
 
 // Submit a new review
 router.post('/',

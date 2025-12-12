@@ -3,7 +3,7 @@ const router = express.Router();
 const Session = require('./models/Session');
 const TutorAvailability = require('./models/tutorAvailability');
 
-const scheduling = require('../middlewares/scheduling');
+const scheduling = require('../middleware/scheduling');
 
 // Create a new tutoring session
 router.post('/', async (req, res) => {
