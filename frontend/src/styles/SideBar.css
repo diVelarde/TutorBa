@@ -1,5 +1,4 @@
 .sidebar {
-<<<<<<< HEAD
   position: sticky;
   top: 56px;       
   width: 200px;
@@ -8,18 +7,6 @@
   padding: 1.5rem;
   box-shadow: 2px 0 6px rgba(0,0,0,0.15);
 }
-=======
-        /* Keep the sidebar as a normal flex child so the content-panel can sit beside it
-           using App.css layout. Use sticky instead of fixed so it stays visible under
-           the fixed header without being removed from document flow. */
-        position: sticky;
-        top: 56px;       
-        width: 200px;
-        min-height: calc(100vh - 56px);
-        padding: 1.5rem;
-        box-shadow: 2px 0 6px rgba(0,0,0,0.15);
-      }
->>>>>>> origin/MERGE
 
 .sidebar-link {
   font-size: 1.15rem;
@@ -38,7 +25,6 @@
   -webkit-appearance: none;
 }
 
-<<<<<<< HEAD
 .sidebar-link.active {
   background: rgba(0,0,0,0.06);
   padding: 0.5rem 0.75rem;
@@ -46,20 +32,6 @@
   color: #fff;
   font-weight: 600;
 }
-=======
-      .sidebar-link.active {
-        background: rgba(0,0,0,0.06);
-        padding: 0.5rem 0.75rem;
-        border-radius: 8px;
-        color: #fff;
-        font-weight: 600;
-      }
-
-      .sidebar-link:hover {
-        opacity: 0.7;
-        text-decoration: none;
-      }
->>>>>>> origin/MERGE
 
 .sidebar-link:hover {
   opacity: 0.7;
