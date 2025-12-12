@@ -317,3 +317,9 @@ For support, email [support email] or open an issue on GitHub.
 - Cloudinary for file hosting
 - MongoDB for database
 - React community for excellent documentation
+
+## Links
+- Slides ('https://www.canva.com/design/DAG7IFJYBwg/9aAOVsOAvqb4XSt0pfUHXg/edit')
+- Figma ('https://www.figma.com/design/FmUgAF795P2t80Bd9c0Y6u/TutorBa-?node-id=0-1&p=f&t=kkNXt0wj2xfmzcog-0')
+- App ('https://tutor-connect-95675178.base44.app/home')
+- Documentation ('https://docs.google.com/document/d/1J7N7uA0JSDllXMBu5L4DNQbmU4nQZjMP7PXkKPmvPhU/edit?usp=sharing')
