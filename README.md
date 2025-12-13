@@ -102,57 +102,14 @@ TutorBa/
 └── Login.html               # Login page
 ```
 
-## Database Schema (Entities & Attributes)
-
-### Core Entities
-
-**Tutor**
-- name, department, subject, rating, profileImage
-- availability: [{ day, startTime, endTime }]
-
-**TutorProfile**
-- userId, bio, subjectsTaught[], experience, education, profileImage, rating
-
-**StudentProfile**
-- userId, bio, interests[], yearLevel, profileImage
-
-**Session**
-- tutor_id, student_id, date, time, location
-- status (pending, confirmed, cancelled, completed)
-- statusHistory[], createdAt, updatedAt
-
-**ForumPost**
-- title, content, author, subject, upvotes, downvotes, createdAt
-
-**Comment**
-- postId, author, content, createdAt
-
-**Favorite**
-- studentId, tutorId, createdAt
-
-**Message**
-- sender_id, receiver_id, content, timestamp, read
-- attachments: [{ filename, originalname, path, url, mimetype, size }]
-
-**Review**
-- student_id, tutor_id, session_id, rating (1-5), comment
-- createdAt, updatedAt
-
-**TutorAvailability**
-- tutor_id, slots: [{ day (0-6), start, end }], updatedAt
-
-**TutorRating**
-- tutor_id, averageRating, reviewCount, updatedAt
-
-**File**
-- fileName, fileType, fileUrl, uploader, createdAt
+---
 
 ## Installation
 
 ### Prerequisites
 - Node.js (v14+)
 - MongoDB (local or Atlas)
-- npm or yarn
+- npm
 
 ### Backend Setup
 
@@ -201,35 +158,17 @@ npm run dev
 ```
 Frontend runs on `http://localhost:5173`
 
-## API Endpoints
+---
 
-### Tutor Routes
-- `GET /api/tutors` - Get all tutors
-- `GET /api/tutors/:id` - Get tutor details
-- `POST /api/tutors` - Create tutor profile
-- `PUT /api/tutors/:id` - Update tutor profile
+## API Endpoints (selected)
 
-### Session Routes
-- `POST /api/sessions` - Create new session
-- `GET /api/sessions/:id` - Get session details
-- `PUT /api/sessions/:id` - Update session status
-- `GET /api/sessions/student/:studentId` - Get student's sessions
-- `GET /api/sessions/tutor/:tutorId` - Get tutor's sessions
+* `GET /api/tutors` – List tutors
+* `POST /api/sessions` – Create session
+* `POST /api/forum` – Add forum post
+* `POST /api/favorites` – Add favorite tutor
+* `POST /api/upload` – Upload file
 
-### Forum Routes
-- `GET /api/forum` - Get all posts
-- `POST /api/forum` - Create new post
-- `GET /api/forum/:postId` - Get post details
-- `POST /api/forum/:postId/comments` - Add comment
-- `DELETE /api/forum/:postId` - Delete post
-
-### Favorite Routes
-- `GET /api/favorites/:studentId` - Get student's favorites
-- `POST /api/favorites` - Add to favorites
-- `DELETE /api/favorites/:favoriteId` - Remove from favorites
-
-### Upload Routes
-- `POST /api/upload` - Upload file to Cloudinary
+---
 
 ## Key Features Implementation
 
@@ -255,6 +194,8 @@ Frontend runs on `http://localhost:5173`
 - Message history between tutors and students
 - Read status tracking
 - File attachment support in messages
+
+---
 
 ## Development
 
@@ -287,21 +228,28 @@ CLOUDINARY_API_SECRET # Cloudinary API secret
 JWT_SECRET           # JWT signing secret
 ```
 
-## Contributing
+---
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
+## Contributing 
+1. Fork the repository 
+2. Create a feature branch 
+3. Commit your changes 
+4. Push to branch 
 5. Open a Pull Request
+
+---
 
 ## License
 
 This project is licensed under the ISC License - see the LICENSE file for details.
 
+---
+
 ## Support
 
 For support, email [support email] or open an issue on GitHub.
+
+---
 
 ## Authors
 
@@ -311,15 +259,19 @@ For support, email [support email] or open an issue on GitHub.
 - Raposa
 - Velarde
 
-## Acknowledgments
+---
 
-- Bootstrap for UI components
-- Cloudinary for file hosting
-- MongoDB for database
-- React community for excellent documentation
+## Acknowledgments 
+* Bootstrap 
+* Cloudinary 
+* MongoDB 
+* React Community
+
+---
 
 ## Links
-- Slides ('https://www.canva.com/design/DAG7IFJYBwg/9aAOVsOAvqb4XSt0pfUHXg/edit')
-- Figma ('https://www.figma.com/design/FmUgAF795P2t80Bd9c0Y6u/TutorBa-?node-id=0-1&p=f&t=kkNXt0wj2xfmzcog-0')
-- App ('https://tutor-connect-95675178.base44.app/home')
-- Documentation ('https://docs.google.com/document/d/1J7N7uA0JSDllXMBu5L4DNQbmU4nQZjMP7PXkKPmvPhU/edit?usp=sharing')
+
+* [Slides](https://www.canva.com/design/DAG7IFJYBwg/9aAOVsOAvqb4XSt0pfUHXg/edit)
+* [UI/UX Design](https://www.figma.com/design/FmUgAF795P2t80Bd9c0Y6u/TutorBa-?node-id=0-1&p=f&t=kkNXt0wj2xfmzcog-0)
+* [Prototype App](https://tutor-connect-95675178.base44.app/home)
+* [Documentation](https://docs.google.com/document/d/1J7N7uA0JSDllXMBu5L4DNQbmU4nQZjMP7PXkKPmvPhU/edit?usp=sharing)
