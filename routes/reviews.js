@@ -1,10 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const Review = require('./models/Review');
-const Session = require('./models/Session');
+import express from 'express';
+import Review from '../models/review.js';
+import Session from '../models/Session.js';
 
-const validators = require('../middleware/validators');
-const reviewChecks = require('../middleware/reviewChecks');
+import validators from '../middleware/validators.js';
+import reviewChecks from '../middleware/reviewChecks.js';
+
+const router = express.Router();
 
 // Submit a new review
 router.post('/',
@@ -12,39 +13,37 @@ router.post('/',
     validators.validateBodyObjectIds(['student_id','tutor_id','session_id']),
     reviewChecks.ensureSessionCompletedAndNoReview,
     async (req, res) => {
-    try {
-        const { student_id, tutor_id, session_id, rating, comment } = req.body;
+        try {
+            const { student_id, tutor_id, session_id, rating, comment } = req.body;
 
-        // Create and save the review
-        const review = new Review({
-            student_id,
-            tutor_id,
-            session_id,
-            rating,
-            comment
-        });
+            const review = new Review({
+                student_id,
+                tutor_id,
+                session_id,
+                rating,
+                comment
+            });
 
-        await review.save();
-        res.status(201).json(review);
-    } catch (error) {
-        res.status(500).json({ 
-            message: 'Error creating review', 
-            error: error.message 
-        });
+            await review.save();
+            res.status(201).json(review);
+        } catch (error) {
+            res.status(500).json({ 
+                message: 'Error creating review', 
+                error: error.message 
+            });
+        }
     }
-});
+);
 
 // Get all reviews for a specific tutor
 router.get('/tutor/:tutorId', async (req, res) => {
     try {
         const reviews = await Review.find({ tutor_id: req.params.tutorId })
-            .populate('student_id', 'name') // Only get student's name
+            .populate('student_id', 'name')
             .populate('session_id', 'date')
-            .sort({ createdAt: -1 }); // Most recent first
+            .sort({ createdAt: -1 });
 
-        // Calculate average rating
-        const averageRating = reviews.reduce((acc, review) => 
-            acc + review.rating, 0) / (reviews.length || 1);
+        const averageRating = reviews.reduce((acc, review) => acc + review.rating, 0) / (reviews.length || 1);
 
         res.json({
             reviews,
@@ -67,9 +66,7 @@ router.get('/:reviewId', async (req, res) => {
             .populate('tutor_id', 'name')
             .populate('session_id');
 
-        if (!review) {
-            return res.status(404).json({ message: 'Review not found' });
-        }
+        if (!review) return res.status(404).json({ message: 'Review not found' });
 
         res.json(review);
     } catch (error) {
@@ -100,4 +97,4 @@ router.get('/student/:studentId', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

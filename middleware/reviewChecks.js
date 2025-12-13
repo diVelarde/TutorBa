@@ -1,8 +1,8 @@
-const Session = require('../models/session');
-const Review = require('../models/review');
+import Session from '../models/session.js';
+import Review from '../models/review.js';
 
-// Middleware to ensure the session exists and is completed and no existing review
-async function ensureSessionCompletedAndNoReview(req, res, next) {
+// Middleware to ensure the session exists, is completed, and has no existing review
+export async function ensureSessionCompletedAndNoReview(req, res, next) {
     try {
         const { session_id } = req.body;
         if (!session_id) {
@@ -23,7 +23,7 @@ async function ensureSessionCompletedAndNoReview(req, res, next) {
             return res.status(409).json({ message: 'A review already exists for this session' });
         }
 
-        // attach session for downstream if needed
+        // Attach session for downstream if needed
         req.sessionRecord = session;
         next();
     } catch (error) {
@@ -31,4 +31,6 @@ async function ensureSessionCompletedAndNoReview(req, res, next) {
     }
 }
 
-module.exports = { ensureSessionCompletedAndNoReview };
+export default {
+    ensureSessionCompletedAndNoReview
+};

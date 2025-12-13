@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const Session = require('./models/Session');
-const TutorAvailability = require('./models/tutorAvailability');
+import Session from '../models/session.js';
+import TutorAvailability from '../models/tutorAvailability.js';
 
-const scheduling = require('../middleware/scheduling');
+import scheduling from '../middleware/scheduling.js';
 
 // Create a new tutoring session
 router.post('/', async (req, res) => {
@@ -300,4 +300,4 @@ router.get('/user/:userId', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Availability slots describe when a tutor can accept sessions.
 // Each slot is a day-of-week (0=Sunday .. 6=Saturday) with start/end times in HH:MM (24h) format.
@@ -21,4 +21,4 @@ tutorAvailabilitySchema.pre('save', function(next) {
 
 const TutorAvailability = mongoose.model('TutorAvailability', tutorAvailabilitySchema);
 
-module.exports = TutorAvailability;
+export default TutorAvailability;

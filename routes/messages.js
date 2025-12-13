@@ -1,8 +1,14 @@
-const express = require('express');
-const path = require('path');
-const multer = require('multer');
+import express from 'express';
+import path from 'path';
+import multer from 'multer';
+import Message from '../models/message.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const router = express.Router();
-const Message = require('../models/message');
 
 // upload destination
 const UPLOAD_DIR = path.join(__dirname, '..', 'uploads', 'messages');
@@ -12,7 +18,6 @@ const storage = multer.diskStorage({
         cb(null, UPLOAD_DIR);
     },
     filename: function (req, file, cb) {
-        // keep original name prefixed with timestamp to avoid collisions
         const unique = Date.now() + '-' + Math.round(Math.random() * 1E9);
         cb(null, unique + '-' + file.originalname);
     }
@@ -20,11 +25,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Ensure upload dir exists is handled by the server startup (or create manually)
-
 // Send a message with optional attachments (multipart/form-data)
-// fields: sender_id, receiver_id, content (optional)
-// files: attachments (array)
 router.post('/', upload.array('attachments', 6), async (req, res) => {
     try {
         const { sender_id, receiver_id, content } = req.body;
@@ -50,10 +51,8 @@ router.post('/', upload.array('attachments', 6), async (req, res) => {
 
         await message.save();
 
-        // emit via socket if available
-        const io = req.app && req.app.get && req.app.get('io');
+        const io = req.app?.get?.('io');
         if (io) {
-            // emit to both participants; we can emit a generic event
             io.emit('messageCreated', message);
         }
 
@@ -64,8 +63,7 @@ router.post('/', upload.array('attachments', 6), async (req, res) => {
     }
 });
 
-// Get conversation between two users (pagination)
-// GET /api/messages/conversation/:userA/:userB?limit=50&skip=0
+// Get conversation between two users
 router.get('/conversation/:userA/:userB', async (req, res) => {
     try {
         const { userA, userB } = req.params;
@@ -105,4 +103,4 @@ router.patch('/:messageId/read', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

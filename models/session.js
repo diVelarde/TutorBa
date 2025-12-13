@@ -1,13 +1,15 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const sessionSchema = new mongoose.Schema({
+const { Schema, model, models } = mongoose;
+
+const sessionSchema = new Schema({
     tutor_id: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
     student_id: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
@@ -28,12 +30,11 @@ const sessionSchema = new mongoose.Schema({
         enum: ['pending', 'confirmed', 'cancelled', 'completed'],
         default: 'pending'
     },
-    // Track status changes over time
     statusHistory: {
         type: [
             {
-                status: { type: String, enum: ['pending', 'confirmed', 'cancelled', 'completed'], required: true },
-                changedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
+                status: { type: String, enum: ['pending','confirmed','cancelled','completed'], required: true },
+                changedBy: { type: Schema.Types.ObjectId, ref: 'User', default: null },
                 changedAt: { type: Date, default: Date.now },
                 note: { type: String }
             }
@@ -50,12 +51,13 @@ const sessionSchema = new mongoose.Schema({
     }
 });
 
-// Update the updatedAt timestamp before saving
+// Update updatedAt timestamp before saving
 sessionSchema.pre('save', function(next) {
     this.updatedAt = new Date();
     next();
 });
 
-const Session = mongoose.model('Session', sessionSchema);
+// Prevent OverwriteModelError
+const Session = models.Session || model('Session', sessionSchema);
 
-module.exports = Session;
+export default Session;

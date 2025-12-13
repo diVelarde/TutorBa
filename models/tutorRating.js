@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const tutorRatingSchema = new mongoose.Schema({
     tutor_id: {
@@ -28,4 +28,4 @@ tutorRatingSchema.pre('save', function(next) {
 
 const TutorRating = mongoose.model('TutorRating', tutorRatingSchema);
 
-module.exports = TutorRating;
+export default TutorRating;

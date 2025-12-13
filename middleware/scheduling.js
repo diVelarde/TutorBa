@@ -1,5 +1,5 @@
-const TutorAvailability = require('../models/tutorAvailability');
-const Session = require('../models/session');
+import TutorAvailability from '../models/tutorAvailability.js';
+import Session from '../models/session.js';
 
 const SESSION_DURATION_MINUTES = 60;
 
@@ -75,7 +75,7 @@ async function hasOverlapConflict({ tutorId, studentId, dateStr, timeStr, exclud
     return { conflict: false };
 }
 
-module.exports = {
+export default {
     parseTimeToMinutes,
     isTutorAvailable,
     hasOverlapConflict,

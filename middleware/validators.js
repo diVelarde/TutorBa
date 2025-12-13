@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 function isValidObjectId(id) {
   try {
@@ -41,7 +41,7 @@ function validateParamObjectId(paramName) {
   };
 }
 
-module.exports = {
+export default {
   isValidObjectId,
   requireBodyFields,
   validateBodyObjectIds,

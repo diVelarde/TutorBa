@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const messageSchema = new mongoose.Schema({
     sender_id: {type: mongoose.Schema.Types.ObjectId,ref: 'User',required: true},
@@ -21,4 +21,4 @@ messageSchema.virtual('messageAge').get(function() {
 
 const Message = mongoose.model('Message', messageSchema);
 
-module.exports = Message;
+export default Message;
