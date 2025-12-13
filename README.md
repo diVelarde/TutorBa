@@ -210,12 +210,6 @@ cd frontend
 npm run build
 ```
 
-### Linting
-```bash
-cd frontend
-npm run lint
-```
-
 ## Environment Variables
 
 Backend (`root` directory):
@@ -253,11 +247,11 @@ For support, email [support email] or open an issue on GitHub.
 
 ## Authors
 
-- Despi
-- Esmabe
-- Palomania
-- Raposa
-- Velarde
+- John Vincent S. Palomania
+- Divina W. Velarde
+- Dwine Matthew P. Despi
+- Ian Karl S. Esmabe
+- John Gabriel S. Raposa
 
 ---
 
