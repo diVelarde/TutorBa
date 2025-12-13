@@ -1,11 +1,46 @@
+/* File sharing card layout and styles */
 .file-sharing-card {
-    max-width: 600px;
+    max-width: 1100px;
     margin: 20px auto;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    background-color: #f0f8ff; 
+    background-color: #f0f8ff;
     border: none;
+}
+
+/* Desktop two-column layout: form inputs on left, drop zone on the right */
+.file-sharing-card .card-body form {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Place the file upload group into the right column */
+.file-sharing-card .card-body form > .mb-4 {
+  grid-column: 2;
+}
+
+/* Ensure the submit button stays in the left column */
+.file-sharing-card .card-body form > .d-grid {
+  grid-column: 1;
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .file-sharing-card .card-body form {
+    grid-template-columns: 1fr;
+  }
+  .file-sharing-card .card-body form > .mb-4,
+  .file-sharing-card .card-body form > .d-grid {
+    grid-column: auto;
+  }
+}
+
+
+body {
+    background-color: #e0f7fa;
 }
 
 .label-text {
@@ -45,7 +80,7 @@
 }
 
 .file-drop-zone {
-    border: 2px dashed #90caf9; 
+    border: 2px dashed #90caf9;
     border-radius: 15px;
     background-color: #ffffff;
     height: 200px;
@@ -59,12 +94,12 @@
 }
 
 .file-drop-zone:hover {
-    background-color: #e3f2fd; 
+    background-color: #e3f2fd;
     border-color: #42a5f5;
 }
 
 .file-drop-zone.dragging {
-    background-color: #bbdefb; 
+    background-color: #bbdefb;
     border-color: #1976d2;
 }
 
@@ -84,7 +119,7 @@
 }
 
 .share-button {
-    background-color: #007bff; 
+    background-color: #007bff;
     border-radius: 10px;
     padding: 10px 0;
     font-weight: bold;

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Favorite = require('../models/Favorite');
-const validators = require('../middlewares/validators');
+const validators = require('../middleware/validators');
 
 // Add a tutor to student's favorites
 router.post('/',

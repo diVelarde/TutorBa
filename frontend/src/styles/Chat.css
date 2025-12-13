@@ -1,3 +1,4 @@
+/* Chat layout (responsive) */
 .chat-container {
   height: calc(100vh - 12rem);
 }
@@ -370,4 +371,5 @@
 .chat-placeholder-icon {
   color: #D1D5DB;
   margin-bottom: 1rem;
+}
 }

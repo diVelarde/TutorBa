@@ -7,3 +7,4 @@ const FavoriteSchema = new mongoose.Schema({
 });
 
 export default mongoose.model("Favorite", FavoriteSchema);
+
